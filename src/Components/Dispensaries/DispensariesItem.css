@@ -1,0 +1,42 @@
+.dispensary-card-image {
+    width: 100.5%;
+    height: 22vh;
+    object-fit: cover;
+    border-radius: 7%
+}
+
+.dispensaries-index {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400, 1fr));
+    grid-gap: 4px;
+    overflow: auto;
+    max-height: 80vh;
+    width: 100%;
+}
+
+.dispensary-card-details {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr; /* Two equal-width columns */
+        grid-gap: 20px; /* Adjust the value as needed to create the desired gap */
+}
+
+.dispensary-card-address {
+    font-size: 12.5px;
+    transform: translateY(7.5px);
+    padding-right: 7px;
+    text-align: end;
+}
+
+.dispensary-card-fee {
+    font-size: 13px;
+}
+
+.dispensary-card-title {
+    font-weight: bold;
+    letter-spacing: 1.00px;
+  }
+  
+
+
+
+
