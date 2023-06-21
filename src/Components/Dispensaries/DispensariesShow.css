@@ -1,0 +1,17 @@
+.dispensary-one-image {
+    width: 100.5%;
+    height: 27vh;
+    object-fit: cover;
+    border-radius: 1%;
+    margin-left: 0;
+}
+
+.dispensary-one-title {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-weight: bold;
+    letter-spacing: 2.00px;
+  }
+
+body {
+  }
