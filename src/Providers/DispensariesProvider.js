@@ -10,6 +10,8 @@ export function useDisProvider() {
 const DispensariesProvider = ({children}) => {
     const { API, axios } = useContextProvider();
     const [dispensaries, setDispensaries] = useState([])
+    const [dispensaryID, setDispensaryID] = useState(null)
+    const [dispensaryItems, setDispensaryItems] = useState({}) 
 
     useEffect(() => {
         axios
@@ -17,10 +19,10 @@ const DispensariesProvider = ({children}) => {
             .then(({ data }) => {
                 setDispensaries(data)
                 console.log('Dispensaries Provider - populated dispensaries state with API response')
-                
             })
-            .catch((error) => console.log(error))
-    },[]);
+            .catch((error) => console.error(error))
+    },[dispensaryID]);
+    
     
     return (
         <div>
@@ -29,7 +31,11 @@ const DispensariesProvider = ({children}) => {
                 API,
                 axios,
                 dispensaries,
-                setDispensaries
+                setDispensaries,
+                dispensaryID,
+                setDispensaryID,
+                dispensaryItems,
+                setDispensaryItems
             }}>
             {children}
             </DisContextD.Provider>

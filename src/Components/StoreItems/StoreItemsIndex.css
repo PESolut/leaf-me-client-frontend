@@ -1,0 +1,8 @@
+.store_item_container {
+    border: 1px;
+    border-color: red;
+    display: grid;
+    grid-template-columns: 1fr; /* Set a single column */
+    grid-gap: 0px; /* Add some gap between the store items */
+  }
+  

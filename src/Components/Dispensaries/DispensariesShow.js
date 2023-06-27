@@ -5,13 +5,15 @@ import { useEffect, useState } from "react";
 import { useDisProvider } from "../../Providers/DispensariesProvider";
 import { useParams } from 'react-router-dom';
 import "./DispensariesShow.css";
+import StoreItemsIndex from "../StoreItems/StoreItemsIndex";
 
 const DispensariesShow = () => {
-    const { dispensaries, axios, API } = useDisProvider();
+    const { dispensaries, axios, API, setDispensaryID, dispensaryItems } = useDisProvider();
     const { dispensary_id } = useParams();
     const [dispensaryInfo, setDispensaryInfo] = useState({});
 
     useEffect(() => {
+        setDispensaryID(dispensary_id)
         axios
             .get(`${API}/dispensary/${dispensary_id}`)
             .then(({ data }) => {
@@ -20,8 +22,7 @@ const DispensariesShow = () => {
             .catch((error) => {
                 console.error(error);
             });
-        axios
-            .get(`${API}`)
+            
     }, [axios, API, dispensary_id]);
 
     let cardImage = ""
@@ -43,6 +44,8 @@ const DispensariesShow = () => {
             src={cardImage}
             />
             <h2 className="dispensary-one-title">{dispensaryInfo.name}</h2>
+            {true ? <StoreItemsIndex dispensary_id={dispensary_id}/> : <></>}
+            
         </div>
         </>
     );

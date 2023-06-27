@@ -1,0 +1,26 @@
+.store_item_card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  height: 100px;
+}
+
+.store_item_card span {
+  margin-right: 20px;
+}
+
+.store_item_card span:last-child {
+  margin-right: 0px;
+}
+
+.store_item_card span:nth-child(1) {
+  font-weight: bold;
+}
+
+.store_item_card span:nth-child(3) {
+    padding-left: 50px;
+  color: #888;
+}
