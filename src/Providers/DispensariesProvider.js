@@ -22,6 +22,10 @@ const DispensariesProvider = ({children}) => {
             })
             .catch((error) => console.error(error))
     },[dispensaryID]);
+
+    const addItemToBasket = (item, quantity) => {
+        console.log('item added to basket:','item id:',item,'quantity id:',quantity)
+    }
     
     
     return (
@@ -30,6 +34,7 @@ const DispensariesProvider = ({children}) => {
             value={{
                 API,
                 axios,
+                addItemToBasket,
                 dispensaries,
                 setDispensaries,
                 dispensaryID,
