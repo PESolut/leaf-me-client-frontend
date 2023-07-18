@@ -21,7 +21,7 @@ const LogoutButton = () => {
     cookies.remove('isSignedIn');
 
     // Navigate to the home page
-    navigate('/');
+    navigate('/dispensary');
 
     // Refresh the page to rerender all states
     window.location.reload();

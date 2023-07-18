@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import flowerImg from "../../Assets/weedflower2.png"
-import defaultImg from "../../Assets/weeddefault.png"
-import edibleImg from "../../Assets/weededible.png"
+import flowerImg from "../../Assets/weedflower2.png";
+import defaultImg from "../../Assets/weeddefault.png";
+import edibleImg from "../../Assets/weededible.png";
 import "./StoreItemShow.css";
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useContextProvider } from '../../Providers/Provider.js';
 import { useDisProvider } from "../../Providers/DispensariesProvider";
 import { useBasketProvider } from '../../Providers/BasketProvider';
 
 const StoreItemShow = () => {
+  const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn, addItemToBasket, baskets, setBaskets, basket } = useContextProvider();
   const { dispensary_id, store_item_id } = useParams();
-  const { axios, API, addItemToBasket } = useDisProvider();
   const [dispensaryItem, setDispensaryItem] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const [total, setTotal] = useState(1)
+  const [total, setTotal] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -26,11 +28,14 @@ const StoreItemShow = () => {
   }, [dispensary_id, store_item_id]);
 
   useEffect(() => {
+    const totalPrice = dispensaryItem.price * quantity;
+    setTotal(totalPrice.toFixed(2));
+  }, [quantity, total]);
 
-    const totalPrice = dispensaryItem.price * quantity
-    setTotal(totalPrice.toFixed(2))
-
-  },[quantity,total])
+  const onAddToBasket = () => {
+    addItemToBasket(dispensaryItem.id, quantity, basket, dispensary_id);
+    navigate(-1);
+  };
 
   let cardImage = "";
 
@@ -52,20 +57,12 @@ const StoreItemShow = () => {
     }
   };
 
-
-  function handleAddToCart() {
-    addItemToBasket(dispensaryItem.id,quantity)
-
-    // Add logic to add the item to the cart with the selected quantity
-    // You can access the selected quantity using the `quantity` state
-  };
-
   return (
     <div className='dcontainer'>
       <img className='dispensary-item-image' src={cardImage} />
       <span className='dispensary-item-details'>{dispensaryItem.name} ({dispensaryItem.type})</span>
       <div className='quantity-form'>
-        <label htmlFor='quantity'>{dispensaryItem.type === 'flower' ? <>Grams</> : <>Quantity</> }:</label>
+        <label htmlFor='quantity'>{dispensaryItem.type === 'flower' ? <>Grams</> : <>Quantity</>}:</label>
         <div className='quantity-controls'>
           <button onClick={decrementQuantity}>-</button>
           <input
@@ -79,7 +76,9 @@ const StoreItemShow = () => {
           <button onClick={incrementQuantity}>+</button>
         </div>
       </div>
-      <button className="cart" onClick={handleAddToCart}>Add {quantity} {dispensaryItem.type === 'flower' ? <>Grams</> : <></>}  to Cart (${!isNaN(total) ? <>{total}</> : <>{dispensaryItem.price}</>})</button>
+      <button className="cart" onClick={onAddToBasket}>
+        Add {quantity} {dispensaryItem.type === 'flower' ? <>Grams</> : <></>} to Cart (${!isNaN(total) ? <>{total}</> : <>{dispensaryItem.price}</>})
+      </button>
     </div>
   );
 };
