@@ -6,7 +6,7 @@ import "./LinkStyles.css"; // Import the LinkStyles.css file
 
 const StoreItem = ({itemObject}) => {
     const { dispensary_id } = useParams();
-    console.log(itemObject)
+    // console.log(itemObject)
     return (
         
         <Link className="link-no-style" to={`/dispensary/${dispensary_id}/store-item/${itemObject.id}`}>

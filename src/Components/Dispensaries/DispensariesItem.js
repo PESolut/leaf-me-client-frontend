@@ -9,7 +9,7 @@ import "./LinkStyles.css"; // Import the LinkStyles.css file
 const DispensariesItem = ({ disObject }) => {
 
     let cardImage = ""
-    console.log(disObject.image)
+    // console.log(disObject.image)
 
     if(disObject.image === 'image1.jpg'){
         cardImage = disp1Img

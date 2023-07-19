@@ -10,10 +10,10 @@ const DispensariesIndex = () => {
     const [cookies] = useCookies(['authToken']);
     const cookieAuthToken = cookies.authToken;
 
-    console.log(cookieAuthToken)
+    // console.log(cookieAuthToken)
 
 
-    console.log(dispensaries)
+    // console.log(dispensaries)
     return (
     
     <>

@@ -14,16 +14,16 @@ const StoreItemsIndex = () => {
         axios
         .get(`${API}/dispensary/${dispensary_id}/storeitems`)
         .then(({ data }) => {
-            console.log('Store Item Index  - populated dispensaries items state with API response')
-            console.log(dispensary_id,'ID')
+            // console.log('Store Item Index  - populated dispensaries items state with API response')
+            // console.log(dispensary_id,'ID')
             setDispensaryItems(data)
-            console.log(dispensaryItems)
+            // console.log(dispensaryItems)
         })
         .catch((error) => console.error(error))
 
     },[dispensary_id])
 
-    console.log(dispensaryItems)
+    // console.log(dispensaryItems)
     
    
 

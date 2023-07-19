@@ -18,7 +18,7 @@ const DispensariesProvider = ({children}) => {
             .get(`${API}/dispensary`)
             .then(({ data }) => {
                 setDispensaries(data)
-                console.log('Dispensaries Provider - populated dispensaries state with API response')
+                // console.log('Dispensaries Provider - populated dispensaries state with API response')
             })
             .catch((error) => console.error(error))
     },[dispensaryID]);

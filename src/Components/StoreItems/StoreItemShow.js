@@ -20,8 +20,8 @@ const StoreItemShow = () => {
     axios
       .get(`${API}/dispensary/${dispensary_id}/storeitems/${store_item_id}`)
       .then(({ data }) => {
-        console.log('Store Item Index - populated dispensaries items state with API response');
-        console.log(dispensary_id, 'ID');
+        // console.log('Store Item Index - populated dispensaries items state with API response');
+        // console.log(dispensary_id, 'ID');
         setDispensaryItem(data);
       })
       .catch((error) => console.error(error));

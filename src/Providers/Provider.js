@@ -26,11 +26,6 @@ const Provider = ({ children }) => {
   const [baskets, setBaskets] = useState(null)
 
   useEffect(() => {
-
-  })
-
-
-  useEffect(() => {
     if (cookies.authToken) {
       setAuthToken(cookies.authToken);
       setIsSignedIn(true);
@@ -57,104 +52,60 @@ const Provider = ({ children }) => {
     axios
       .get(`${API}/users/${cookieUserID}/basket`)
       .then(({ data}) => {
-        console.log('data from useEffect fetch for basket on userID / dispensaryID change',data)
         setBasket(data)
       })
       .catch((error) => {
         console.error('ERROR', error)
       })
-      console.log('basket:',basket)
 
   },[userID, dispensaryID])
 
   const addItemToBasket = async (item, quantity, basket, dispensary_id) => {
+    // retrieve the userID
     const cookieUserID = cookies.userID;
-    console.log('item added to basket: itemID:', item, 'quantityCount:', quantity ,' to dispensary ID:',dispensary_id);
-    // get the existing basket or create a new basket
-    console.log(basket,'baskets')
 
-
-
-    let newBasket = basket || (await createNewBasket(userID, dispensary_id))
-    
-    // console.log(newBasket[0].dispensary_id,'old basket dispensary id')
-    console.log(dispensary_id,'old dispensary_id')
-    console.log(newBasket[0],'new basket el 0')
-    console.log(newBasket[0].dispensary_id,'new basket el 0 dispensary id')
-    console.log(newBasket,'new basket obj')
-    console.log(newBasket.dispensary_id,'new basket obj dispensary id')
-
-    // check if newBasket dispensaryID matches our current dispensary_ID, if not, create new
-    if (parseInt(newBasket[0].dispensary_id || newBasket.dispensary_id) === parseInt(dispensary_id)) {
-      console.log('old basket DOES matches our current dispensary ID')
-    } else {
-      console.log('old basket DOES NOT match our current dispensary ID')
-      // delete the old basket
-      console.log('deleting basket ID',newBasket[0].id)
-      axios
-        .delete(`${API}/users/${cookieUserID}/basket/${newBasket[0].id}`)
-        .then(({data}) => {
-          console.log('deleted basket item:',data)
-        })
-        .catch((error) => console.error(error))
-
-        // create another basket
-        await createNewBasket(setBasket, dispensary_id)
-        console.log('created new basket to match our dispensary_id',basket)
-
+    // if its not present, user is not signed in
+    if(!cookieUserID){
+      alert('You must log in to create a basket');
+      return;
     }
-    console.log('ready to create a new basket item')
-    // post the basketitem to the basket
 
+    console.log(item, quantity, basket, dispensary_id)
+    
+    // if the current user has no basket, create a new one
+    basket = basket || (await createNewBasket(userID, dispensary_id))
+
+    // post the basketitem to the basket
     let newBasketItem = {
       quantity : quantity,
-
-
-
+      basket_id: basket[0].id,
+      store_item_id: item
     }
-
-    // ensure that fetched newBasket dispensary_id matches our current dispensary_id
-
-    // if it does not , remove that basket then create a new basket
-
-    // next, post the basket store item .
-
-    // if (!baskets) {
-    //   await createNewBasket(userID, dispensaryID); // Pass the correct arguments
-    //   console.log('no baskets, creating new');
-    // }
-    // console.log('baskets found:', baskets, 'about to add to one of these baskets');
-
-    // of all the found baskets, we need to find a basket that matches dispensary_ID
-  
-    // create a basket store item
-
+    axios
+      .post(`${API}/users/${cookieUserID}/basket/${basket[0].id}/storeitems`, newBasketItem)
+      .then(({data}) => {
+        console.log('posted basket store item:',data)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
   };
   
   const createNewBasket = async (setBasket, dispensary_id) => {
     const cookieUserID = cookies.userID;
-    console.log('baskets',dispensary_id)
-
     const newBasket = {
       client_user_id: cookieUserID,
       dispensary_id: dispensary_id
-    };
-
-    console.log('basket',newBasket)
-  
+    };  
     axios 
       .post(`${API}/users/${cookieUserID}/basket`, newBasket)
       .then((response) => {
-        console.log(response, 'response from post to api/users/userid/basket');
         setBasket(response.data);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
   };
-  
-
-  
 
   return (
     <div>

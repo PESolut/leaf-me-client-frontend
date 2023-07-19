@@ -15,12 +15,12 @@ const DispensariesShow = () => {
     const { dispensary_id } = useParams();
     const [dispensaryInfo, setDispensaryInfo] = useState({});
     const params = useParams()
-    console.log('dispensary:',params.dispensary_id)
+    // console.log('dispensary:',params.dispensary_id)
 
     useEffect(() => {
         setDispensaryID(params.dispensary_id)
-        console.log('dispensary ID',DispensaryID)
-        console.log('dispensary ID (useparams)',dispensary_id)
+        // console.log('dispensary ID',DispensaryID)
+        // console.log('dispensary ID (useparams)',dispensary_id)
         axios
             .get(`${API}/dispensary/${dispensary_id}`)
             .then(({ data }) => {
@@ -52,7 +52,9 @@ const DispensariesShow = () => {
             />
             <h2 className="dispensary-one-title">{dispensaryInfo.name}</h2>
             {true ? <StoreItemsIndex dispensary_id={dispensary_id}/> : <></>}
-            
+        </div>
+        <div className="basket-button">
+
         </div>
         </>
     );
