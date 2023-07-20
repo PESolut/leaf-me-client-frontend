@@ -3,6 +3,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import Nav from '../Components/App/Nav';
 import { useParams } from 'react-router-dom';
+import Header from '../Components/App/Header';
 
 export const ContextD = createContext();
 export function useContextProvider() {
@@ -24,6 +25,11 @@ const Provider = ({ children }) => {
     dispensary_id: ''
   })
   const [baskets, setBaskets] = useState(null)
+  const [totalBasketItems, setTotalBasketItems] = useState(0)
+  const [subTotalCartPrice, setSubTotalCartPrice] = useState(0)
+  const [basketItems, setBasketItems] = useState({})
+  const [basketChange, setBasketChange] = useState(false)
+  const [storeItems, setStoreItems] = useState({})
 
   useEffect(() => {
     if (cookies.authToken) {
@@ -39,6 +45,7 @@ const Provider = ({ children }) => {
       setIsSignedIn(true);
     }
   }, [cookies]);
+
 
   useEffect(() => {
     axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;
@@ -57,8 +64,15 @@ const Provider = ({ children }) => {
       .catch((error) => {
         console.error('ERROR', error)
       })
-
   },[userID, dispensaryID])
+
+  // fetch the basket items inside the basket, then calculate a total price and store it inside a state
+  // rerender every time total state is changed, basket is changed or basketItems is changed
+  useEffect(() => {
+    // console.log(basket[0].id)
+
+    
+  },[])
 
   const addItemToBasket = async (item, quantity, basket, dispensary_id) => {
     // retrieve the userID
@@ -69,6 +83,7 @@ const Provider = ({ children }) => {
       alert('You must log in to create a basket');
       return;
     }
+    setBasketChange(true)
 
     console.log(item, quantity, basket, dispensary_id)
     
@@ -89,6 +104,7 @@ const Provider = ({ children }) => {
       .catch((error) => {
         console.error(error)
       })
+      // setBasketChange(false)
   };
   
   const createNewBasket = async (setBasket, dispensary_id) => {
@@ -111,6 +127,16 @@ const Provider = ({ children }) => {
     <div>
       <ContextD.Provider
         value={{
+          totalBasketItems,
+          setTotalBasketItems,
+          subTotalCartPrice,
+          setSubTotalCartPrice,
+          storeItems,
+          setStoreItems,
+          basketChange,
+          setBasketChange,
+          basketItems,
+          setBasketItems,
           basket,
           baskets,
           setBaskets,
@@ -127,6 +153,7 @@ const Provider = ({ children }) => {
           addItemToBasket
         }}
       >
+        <Header userID={userID} basket={basket}/>
         {children}
         <Nav />
       </ContextD.Provider>

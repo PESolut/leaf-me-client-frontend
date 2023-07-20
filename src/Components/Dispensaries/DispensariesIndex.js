@@ -17,8 +17,6 @@ const DispensariesIndex = () => {
     return (
     
     <>
-        <h2>Dispensaries</h2>
-        <h4>currently signed in as: {userID}</h4>
         {/* <h4>token: {cookieAuthToken}</h4> */}
         <div className="dispensaries-index">
             {
