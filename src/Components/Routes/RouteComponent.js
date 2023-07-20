@@ -6,12 +6,16 @@ import DispensariesShow from '../Dispensaries/DispensariesShow';
 import StoreItemShow from '../StoreItems/StoreItemShow';
 import Login from '../../Pages/Login';
 import Profile from '../../Pages/Profile';
+import Products from '../../Pages/Products';
 
 const RouteComponent = () => {
   return (
     <Routes>
       <Route path="/">
         <Route index element={<Home />} />
+        <Route path='products'>
+          <Route index element={<Products/>} />
+        </Route>
         <Route path='login'>
           <Route index element={<Login/>}/>
         </Route>

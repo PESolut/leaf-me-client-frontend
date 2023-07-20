@@ -8,15 +8,21 @@ import { useEffect } from "react";
 const Header = ({userID, basket}) => {
     const { axios, API, basketItems, setBasketItems, basketChange, setBasketChange, setStoreItems, storeItems, setSubTotalCartPrice, subTotalCartPrice, totalBasketItems, setTotalBasketItems } = useContextProvider();
 
-    const calculateTotalBasketItemsPrice = (basketItems, storeItems) => {
+    const calculateTotalBasketItemsPrice = (basketItems) => {
         let total = 0;
         if (basketItems && storeItems)
         setTotalBasketItems(basketItems.length)
 
+        axios
+        .get(`${API}/allstoreitems`)
+        .then(({data}) => {
+            // console.log('store items dictionary populated')
+            setStoreItems(data)
+        })
+
         // console.log('storeitems',storeItems)
       
         for (let i = 0; i < basketItems.length; i++) {
-            
           const { quantity, store_item_id } = basketItems[i];
         //   // Assuming storeItemPrices is a dictionary containing store_item_id as key and price as value
           const price = storeItems[store_item_id-1]
@@ -28,7 +34,7 @@ const Header = ({userID, basket}) => {
           total += (quantity) * (price.price);
 
         }
-      
+        console.log(total)
         return total.toFixed(2);
       };
       
@@ -72,7 +78,7 @@ const Header = ({userID, basket}) => {
         }
     },[basketChange])
 
-    // fetch all store items
+    // fetch all store items and store in dictionary for use in total basket price function
     useEffect(()=>{
         axios
         .get(`${API}/allstoreitems`)
