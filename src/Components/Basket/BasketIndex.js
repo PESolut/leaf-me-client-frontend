@@ -2,6 +2,7 @@ import {useContextProvider } from '../../Providers/Provider.js'
 import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from 'react';
 import BasketItem from './BasketItem.js';
+import './BasketIndex.css'
 
 const BasketIndex = () => {
     const {userID, axios, API, basket, setStoreItems, storeItems} = useContextProvider()
@@ -90,10 +91,11 @@ const BasketIndex = () => {
 
     return (
         <>
-        <section className='basket-total-details'>
+        <section className='basket-total-container'>
             <span>{`${currentBasketItemsTotalCount} items`}</span>
             <span>{`Subtotal: $${currentBasketItemsTotalUSD}`}</span>
         </section>
+        <br/>
         <div className="basket-index-container">
              {
                     currentBasketItems ? currentBasketItems.map(object =>

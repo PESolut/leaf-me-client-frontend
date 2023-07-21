@@ -1,0 +1,23 @@
+/* Grid container for the "basket-total-details" section */
+.basket-total-container {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two rows with equal height */
+    grid-gap: 100px; /* Add some space between the rows */
+  }
+  
+  /* Style for each span inside the "basket-total-details" section */
+  .basket-total-details span {
+    /* Add your desired styling here */
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Example styling for the basket items container (you can modify as needed) */
+  .basket-index-container {
+    /* Add your desired styling here */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Example: Three columns with equal width */
+    grid-gap: 10px; /* Add some space between the items */
+  }
+  
