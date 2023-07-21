@@ -7,6 +7,7 @@ import StoreItemShow from '../StoreItems/StoreItemShow';
 import Login from '../../Pages/Login';
 import Profile from '../../Pages/Profile';
 import Products from '../../Pages/Products';
+import Basket from '../../Pages/Basket'
 
 const RouteComponent = () => {
   return (
@@ -15,6 +16,9 @@ const RouteComponent = () => {
         <Route index element={<Home />} />
         <Route path='products'>
           <Route index element={<Products/>} />
+        </Route>
+        <Route path="basket">
+          <Route index element={<Basket/>} />
         </Route>
         <Route path='login'>
           <Route index element={<Login/>}/>
