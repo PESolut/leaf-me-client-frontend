@@ -3,10 +3,12 @@ import { useState } from "react";
 import cartIcon from "../../Assets/Icons/shopping-cart.png"
 import { useContextProvider } from '../../Providers/Provider.js';
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Header = ({userID, basket}) => {
     const { axios, API, basketItems, setBasketItems, basketChange, setBasketChange, setStoreItems, storeItems, setSubTotalCartPrice, subTotalCartPrice, totalBasketItems, setTotalBasketItems } = useContextProvider();
+    const navigate = useNavigate();
 
     const calculateTotalBasketItemsPrice = (basketItems) => {
         let total = 0;
@@ -89,6 +91,10 @@ const Header = ({userID, basket}) => {
 
     },[basketChange])
 
+    const navigateToCart = (userID) => {
+        navigate(`/basket`)
+    }
+
     return (
         <div className="header">
             <section className="left-header">
@@ -97,7 +103,7 @@ const Header = ({userID, basket}) => {
             </section>
             <section className="right-header">
                 {/* <button>Basket Button</button> */}
-                <img className="cart-icon"src={cartIcon}>
+                <img onClick ={()=> navigateToCart(userID)} className="cart-icon"src={cartIcon}>
                 </img>
                 <span className="cart-text">({totalBasketItems}) ${subTotalCartPrice}</span>
                 {/* <span className="cart-text">(1) $13.62</span> */}

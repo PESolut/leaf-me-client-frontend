@@ -9,7 +9,7 @@ import { useDisProvider } from "../../Providers/DispensariesProvider";
 import { useBasketProvider } from '../../Providers/BasketProvider';
 
 const StoreItemShow = () => {
-  const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn, addItemToBasket, baskets, setBaskets, basket } = useContextProvider();
+  const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn, addItemToBasket, baskets, setBaskets, basket, basketItems } = useContextProvider();
   const { dispensary_id, store_item_id } = useParams();
   const [dispensaryItem, setDispensaryItem] = useState({});
   const [quantity, setQuantity] = useState(1);

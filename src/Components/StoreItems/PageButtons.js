@@ -27,9 +27,7 @@ const PageButtons = () => {
   }, [queryParams]);
 
   const navigateToPage = (pageNumber) => {
-    // // Update the URL with the new page number
-    // const newSearchParams = new URLSearchParams(location.search);
-    // newSearchParams.set('page', pageNumber);
+
     navigate(`/products?page=${pageNumber}`);
   };
 

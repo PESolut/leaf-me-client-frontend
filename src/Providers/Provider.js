@@ -66,13 +66,6 @@ const Provider = ({ children }) => {
       })
   },[userID, dispensaryID])
 
-  // fetch the basket items inside the basket, then calculate a total price and store it inside a state
-  // rerender every time total state is changed, basket is changed or basketItems is changed
-  useEffect(() => {
-    // console.log(basket[0].id)
-
-    
-  },[])
 
   const addItemToBasket = async (item, quantity, basket, dispensary_id) => {
     // retrieve the userID
