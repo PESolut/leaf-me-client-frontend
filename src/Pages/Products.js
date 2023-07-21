@@ -1,6 +1,7 @@
 import AllStoreItems from "../Components/StoreItems/AllStoreItems";
 import { useEffect } from "react";
 import { useContextProvider } from '../Providers/Provider';
+import PageButtons from "../Components/StoreItems/PageButtons";
 
 
 const Products = () => {
@@ -20,6 +21,7 @@ const Products = () => {
     return (
         <div>
             <AllStoreItems storeItems={storeItems}/>
+            <PageButtons/>
         </div>
     );
 };

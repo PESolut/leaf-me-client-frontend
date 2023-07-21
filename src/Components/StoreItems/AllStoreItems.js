@@ -28,10 +28,10 @@ const AllStoreItems = () => {
         }
         setPageNumber(page)
         
-    },[pageNumber])
+    },[pageNumber, storeItems])
 
     useEffect(()=>{
-        
+
         if (!isPageQueryADigit(page)){
             setPageNumber(1)
         }
@@ -43,7 +43,7 @@ const AllStoreItems = () => {
             setStoreItems(data)
         })
 
-    },[pageNumber])
+    },[pageNumber, storeItems])
 
 
     return (
