@@ -23,10 +23,12 @@ const AllStoreItems = () => {
 
     useEffect(() => {
         const page = queryParams.get('page');
+        console.log('page',page)
         if (!isPageQueryADigit(page)){
             setPageNumber(1)
         }
         setPageNumber(page)
+        console.log('page number',pageNumber)
         
     },[pageNumber, storeItems])
 
@@ -35,7 +37,6 @@ const AllStoreItems = () => {
         if (!isPageQueryADigit(page)){
             setPageNumber(1)
         }
-
         axios
         .get(`${API}/allstoreitems?page=${pageNumber}`)
         .then(({data}) => {
@@ -43,7 +44,7 @@ const AllStoreItems = () => {
             setStoreItems(data)
         })
 
-    },[pageNumber, storeItems])
+    },[pageNumber,page])
 
 
     return (

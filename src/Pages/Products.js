@@ -8,12 +8,12 @@ const Products = () => {
     const { setStoreItems, axios, API, storeItems } = useContextProvider()
 
     useEffect(()=>{
-        axios
-        .get(`${API}/allstoreitems`)
-        .then(({data}) => {
-            // console.log('store items dictionary populated')
-            setStoreItems(data)
-        })
+        // axios
+        // .get(`${API}/allstoreitems`)
+        // .then(({data}) => {
+        //     // console.log('store items dictionary populated')
+        //     setStoreItems(data)
+        // })
 
     },[])
 

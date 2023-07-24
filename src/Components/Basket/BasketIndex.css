@@ -19,5 +19,6 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Example: Three columns with equal width */
     grid-gap: 10px; /* Add some space between the items */
+    max-height: 75.2vh;
   }
   
