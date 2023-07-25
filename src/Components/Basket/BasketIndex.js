@@ -5,12 +5,28 @@ import BasketItem from './BasketItem.js';
 import './BasketIndex.css'
 
 const BasketIndex = () => {
+    const [count, setCount] = useState(0);
+
     const {userID, axios, API, basket, storeItems} = useContextProvider()
     const [currentBasket, setCurrentBasket] = useState ({
         total: null,
         itemCount: null,
-        items: []
+        items: [],
+        names: []
     })
+
+    // this useEffect will run every 10 seconds, for testing purposes
+    useEffect(() => {
+        const interval = setInterval(() => {
+            console.log(currentBasket)
+            console.log("This will run every ten seconds!")
+
+          setCount(count + 1);
+        }, 10000); // 10000 milliseconds = 10 seconds
+    
+        // Cleanup function to clear the interval when the component unmounts
+        return () => clearInterval(interval);
+      }, []); // Empty dependency array, so the effect runs only once on component mount
 
     // anytime our user changes or our basket changes, lets update our basketitems
     useEffect(()=> {
@@ -21,7 +37,8 @@ const BasketIndex = () => {
                 setCurrentBasket({
                     total: currentBasket.total,
                     itemCount: currentBasket.itemCount,
-                    items: data
+                    items: data,
+                    names: currentBasket.names
                 })
             })
             .catch((error) => {
@@ -35,16 +52,27 @@ const BasketIndex = () => {
     useEffect(()=> {
         if(currentBasket.items.length > 0){
             const total = (calculateTotalBasketItemsPrice(currentBasket.items))
+            const names = (getCurrentBasketNames(currentBasket.items))
             setCurrentBasket({
                 total: `${total}`,
-                itemCount: 0,
-                items: currentBasket.items
+                itemCount: currentBasket.itemCount,
+                items: currentBasket.items,
+                names: names
             })
         }
-        if(currentBasket.items.length > 0){
-            const basketNamesArr = getCurrentBasketNames(currentBasket.items)
-        }
     },[userID, basket, currentBasket.items])
+    // useEffect(()=> {
+    //     if(currentBasket.items.length > 0){
+    //         const names = (getCurrentBasketNames(currentBasket.items))
+    //         setCurrentBasket({
+    //             total: currentBasket.total,
+    //             itemCount: currentBasket.itemCount,
+    //             items: currentBasket.items,
+    //             names: names
+    //         })
+    //     }
+    //     console.log(currentBasket.names[0],currentBasket.items[0])
+    // },[userID, basket, currentBasket.items, currentBasket.total])
 
     // takes in basketItems, and storeItems to calculate total basketItems Price
     const calculateTotalBasketItemsPrice =  (basketItems) => {
@@ -70,6 +98,8 @@ const BasketIndex = () => {
         }
       };
 
+    // get our basket items names and store inside an array. will be later stored in currentBasket.names 
+    // in useEffect mounted to currentBasket.items, basket, and userID.
     const getCurrentBasketNames = (basketItems) => {
         let returnArr = []
         axios
@@ -80,7 +110,7 @@ const BasketIndex = () => {
         .catch((error) => {
             console.error(error)
         })
-        // iterate over basketItems, on each element of basketItem, take value store_item_id
+        // iterate over basketItems, on each element of basketItem, take value store_item_id to get currentElName
         for(let i = 0; i < basketItems.length; i++) {
             const { store_item_id } = basketItems[i]
             const currentElName = storeItems[store_item_id-1].name
