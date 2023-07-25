@@ -1,7 +1,9 @@
+import './BasketItem.css'
+
 
 const BasketItem = ({basketItemObject}) => {
     return (
-        <div>
+        <div className='basket-item'>
             {basketItemObject.id}
             
         </div>
