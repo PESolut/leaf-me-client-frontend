@@ -4,7 +4,15 @@ import './BasketItem.css'
 const BasketItem = ({basketItemObject}) => {
     return (
         <div className='basket-item'>
-            {basketItemObject.id}
+            <>
+                 {basketItemObject.id}
+            </>
+            <>
+
+            </>
+            <>
+            
+            </>
             
         </div>
     );

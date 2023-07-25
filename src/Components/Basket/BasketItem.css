@@ -1,4 +1,6 @@
 .basket-item{
     background-color: red;
+    grid-template-rows: repeat(3, 1fr);
+
     height: 100px;
 }
