@@ -51,7 +51,7 @@ const BasketIndex = () => {
             const names = (getCurrentBasketNames(currentBasket.items))
             setCurrentBasket({
                 total: `${total}`,
-                itemCount: currentBasket.itemCount,
+                itemCount: currentBasket.items.length,
                 items: currentBasket.items,
                 names: names
             })

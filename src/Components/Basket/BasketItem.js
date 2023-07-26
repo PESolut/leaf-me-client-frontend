@@ -1,9 +1,14 @@
 import './BasketItem.css'
+import {useContextProvider } from '../../Providers/Provider.js'
+import { useEffect, useState } from 'react';
 
 
 const BasketItem = ({basketItemObject, basketItemName}) => {
+    const  { axios, API , storeItems } = useContextProvider();
 
-    
+    // const basketItemPrice = storeItems[basketItemObject.store_item_id]
+    console.log(storeItems[basketItemObject.store_item_id-1].price)
+
     return (
         <div className='basket-item'>
             {/* <>
@@ -17,7 +22,8 @@ const BasketItem = ({basketItemObject, basketItemName}) => {
                 quantity {basketItemObject.quantity}
                 </span>
                 <span>
-                $23.00
+                {/* price {basketItemPrice} */}
+                {`$${storeItems[basketItemObject.store_item_id-1].price}`}
                 </span>
 
             </section>
