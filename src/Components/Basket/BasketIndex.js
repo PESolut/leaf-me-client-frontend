@@ -41,7 +41,7 @@ const BasketIndex = () => {
                 console.error(error)
             })
         }
-    },[userID, basket])
+    },[userID, basket, currentBasket.itemCount])
 
     // on currentBasketItems change, append total to basket object
     // on currentBasketItems change, fetch basket items
@@ -103,6 +103,21 @@ const BasketIndex = () => {
         return returnArr
     }
 
+    const updateQuantityInBasketItem = (basketItemId, newQuantity) => {
+        const updatedItems = currentBasket.items.map((item) => {
+            if (item.id === basketItemId) {
+                return { ...item, quantity: newQuantity };
+            }
+            return item;
+        });
+
+        setCurrentBasket((prevBasket) => ({
+            ...prevBasket,
+            items: updatedItems
+        }));
+    };
+
+
     return (
         <>
         <section className='basket-total-container'>
@@ -115,6 +130,7 @@ const BasketIndex = () => {
                     currentBasket.items ? currentBasket.items.map(object =>
                         <BasketItem
                         key = {uuidv4()}
+                        updateQuantityInBasketItem={updateQuantityInBasketItem}
                         basketItemName = {currentBasket.names[currentBasket.items.indexOf(object)]}
                         basketItemObject = {object} />
                         ) : <></>

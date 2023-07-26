@@ -1,29 +1,35 @@
 import './BasketItem.css'
 import {useContextProvider } from '../../Providers/Provider.js'
 import { useEffect, useState } from 'react';
+import QuantityButton from './QuantityButton';
 
 
-const BasketItem = ({basketItemObject, basketItemName}) => {
+const BasketItem = ({basketItemObject, basketItemName, updateQuantityInBasketItem}) => {
     const  { axios, API , storeItems } = useContextProvider();
+    const [basketItemPrice, setBasketItemPrice] = useState(0.00)
 
-    // const basketItemPrice = storeItems[basketItemObject.store_item_id]
-    console.log(storeItems[basketItemObject.store_item_id-1].price)
+    useEffect(() => {
+        const itemPrice = (storeItems[basketItemObject.store_item_id-1].price)*(basketItemObject.quantity)
+        setBasketItemPrice(itemPrice)
+        // console.log(itemPrice)
+    },[basketItemObject,basketItemObject.quantity])
 
     return (
         <div className='basket-item'>
-            {/* <>
+            <>
             basket_store_item_id {basketItemObject.id} 
-            </> */}
+            </>
             <span>
             item name {basketItemName} 
             </span>
             <section className='basket-details'>
                 <span>
-                quantity {basketItemObject.quantity}
+                    <QuantityButton updateQuantityInBasketItem={updateQuantityInBasketItem} basketItemObject={basketItemObject}/>
+                {/* quantity {basketItemObject.quantity} */}
                 </span>
                 <span>
                 {/* price {basketItemPrice} */}
-                {`$${storeItems[basketItemObject.store_item_id-1].price}`}
+                {`$${(basketItemPrice).toFixed(2)}`}
                 </span>
 
             </section>
