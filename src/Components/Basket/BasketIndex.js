@@ -117,6 +117,15 @@ const BasketIndex = () => {
         }));
     };
 
+    const removeItemFromBasket = (itemId) => {
+        const updatedItems = currentBasket.items.filter(item => item.id !== itemId);
+    
+        setCurrentBasket(prevState => ({
+          ...prevState,
+          items: updatedItems,
+        }));
+      };
+
 
     return (
         <>
@@ -130,6 +139,7 @@ const BasketIndex = () => {
                     currentBasket.items ? currentBasket.items.map(object =>
                         <BasketItem
                         key = {uuidv4()}
+                        removeItemFromBasket = {removeItemFromBasket}
                         updateQuantityInBasketItem={updateQuantityInBasketItem}
                         basketItemName = {currentBasket.names[currentBasket.items.indexOf(object)]}
                         basketItemObject = {object} />

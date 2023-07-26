@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import QuantityButton from './QuantityButton';
 
 
-const BasketItem = ({basketItemObject, basketItemName, updateQuantityInBasketItem}) => {
+const BasketItem = ({basketItemObject, basketItemName, updateQuantityInBasketItem, removeItemFromBasket}) => {
     const  { axios, API , storeItems } = useContextProvider();
     const [basketItemPrice, setBasketItemPrice] = useState(0.00)
 
@@ -24,7 +24,7 @@ const BasketItem = ({basketItemObject, basketItemName, updateQuantityInBasketIte
             </span>
             <section className='basket-details'>
                 <span>
-                    <QuantityButton updateQuantityInBasketItem={updateQuantityInBasketItem} basketItemObject={basketItemObject}/>
+                    <QuantityButton removeItemFromBasket={removeItemFromBasket} updateQuantityInBasketItem={updateQuantityInBasketItem} basketItemObject={basketItemObject}/>
                 {/* quantity {basketItemObject.quantity} */}
                 </span>
                 <span>
