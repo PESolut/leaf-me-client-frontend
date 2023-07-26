@@ -5,28 +5,24 @@ import BasketItem from './BasketItem.js';
 import './BasketIndex.css'
 
 const BasketIndex = () => {
-    const [count, setCount] = useState(0);
-
-    const {userID, axios, API, basket, storeItems} = useContextProvider()
+    const {userID, axios, API, basket, storeItems, setStoreItems} = useContextProvider()
     const [currentBasket, setCurrentBasket] = useState ({
         total: null,
         itemCount: null,
         items: [],
         names: []
     })
-
-    // this useEffect will run every 10 seconds, for testing purposes
+    // on page load, fetch store items, for use on calculating total basket price and single basket item price on basketItem component
     useEffect(() => {
-        const interval = setInterval(() => {
-            console.log(currentBasket)
-            console.log("This will run every ten seconds!")
-
-          setCount(count + 1);
-        }, 10000); // 10000 milliseconds = 10 seconds
-    
-        // Cleanup function to clear the interval when the component unmounts
-        return () => clearInterval(interval);
-      }, []); // Empty dependency array, so the effect runs only once on component mount
+        axios
+        .get(`${API}/allstoreitems`)
+        .then(({data}) => {
+            setStoreItems(data)
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    },[])
 
     // anytime our user changes or our basket changes, lets update our basketitems
     useEffect(()=> {
@@ -61,18 +57,6 @@ const BasketIndex = () => {
             })
         }
     },[userID, basket, currentBasket.items])
-    // useEffect(()=> {
-    //     if(currentBasket.items.length > 0){
-    //         const names = (getCurrentBasketNames(currentBasket.items))
-    //         setCurrentBasket({
-    //             total: currentBasket.total,
-    //             itemCount: currentBasket.itemCount,
-    //             items: currentBasket.items,
-    //             names: names
-    //         })
-    //     }
-    //     console.log(currentBasket.names[0],currentBasket.items[0])
-    // },[userID, basket, currentBasket.items, currentBasket.total])
 
     // takes in basketItems, and storeItems to calculate total basketItems Price
     const calculateTotalBasketItemsPrice =  (basketItems) => {
@@ -131,6 +115,7 @@ const BasketIndex = () => {
                     currentBasket.items ? currentBasket.items.map(object =>
                         <BasketItem
                         key = {uuidv4()}
+                        basketItemName = {currentBasket.names[currentBasket.items.indexOf(object)]}
                         basketItemObject = {object} />
                         ) : <></>
                     
