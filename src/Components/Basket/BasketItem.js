@@ -15,19 +15,19 @@ const BasketItem = ({basketItemObject, basketItemName, updateQuantityInBasketIte
     },[basketItemObject,basketItemObject.quantity])
 
     return (
-        <div className='basket-item'>
-            <>
+        <div className='basket-item-container'>
+            {/* <>
             basket_store_item_id {basketItemObject.id} 
-            </>
-            <span>
-            item name {basketItemName} 
+            </> */}
+            <span className='basket-item-title'>
+            {basketItemName} 
             </span>
             <section className='basket-details'>
                 <span>
                     <QuantityButton removeItemFromBasket={removeItemFromBasket} updateQuantityInBasketItem={updateQuantityInBasketItem} basketItemObject={basketItemObject}/>
                 {/* quantity {basketItemObject.quantity} */}
                 </span>
-                <span>
+                <span className='basket-item-price'>
                 {/* price {basketItemPrice} */}
                 {`$${(basketItemPrice).toFixed(2)}`}
                 </span>

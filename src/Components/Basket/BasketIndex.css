@@ -18,7 +18,7 @@
     /* Add your desired styling here */
     display: grid;
     grid-template-columns: repeat(1, 1fr); /* Example: Three columns with equal width */
-    grid-gap: 10px; /* Add some space between the items */
+    grid-gap: 20px; /* Add some space between the items */
     height: 77.0vh;
     overflow: auto;
   }
