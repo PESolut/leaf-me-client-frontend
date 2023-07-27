@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useContextProvider } from '../../Providers/Provider.js';
+import './QuantityButton.css';
 
 const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeItemFromBasket }) => {
     const { axios, API , storeItems, userID } = useContextProvider();
