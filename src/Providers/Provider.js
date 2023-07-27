@@ -20,11 +20,11 @@ const Provider = ({ children }) => {
   const [isSignedIn, setIsSignedIn] = useState(null);
   const [userName, setUserName] = useState(null)
   const [basket, setBasket] = useState(null)
-  const [newBasket, setNewBasket] = useState({
-    client_user_id: '',
-    dispensary_id: ''
-  })
-  const [baskets, setBaskets] = useState(null)
+  // const [newBasket, setNewBasket] = useState({
+  //   client_user_id: '',
+  //   dispensary_id: ''
+  // })
+  // const [baskets, setBaskets] = useState(null)
   const [totalBasketItems, setTotalBasketItems] = useState(0)
   const [subTotalCartPrice, setSubTotalCartPrice] = useState(0)
   const [basketItems, setBasketItems] = useState({})
@@ -47,15 +47,14 @@ const Provider = ({ children }) => {
   }, [cookies]);
 
 
-  useEffect(() => {
-    axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;
+  // useEffect(() => {
+  //   axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;
 
-  }, [authToken])
+  // }, [authToken])
 
   // fetch all the baskets and store inside of a state
   useEffect(() => {
     const cookieUserID = cookies.userID
-    axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;
     axios
       .get(`${API}/users/${cookieUserID}/basket`)
       .then(({ data}) => {
@@ -64,7 +63,7 @@ const Provider = ({ children }) => {
       .catch((error) => {
         console.error('ERROR', error)
       })
-  },[userID, dispensaryID])
+  },[userID])
 
 
   const addItemToBasket = async (item, quantity, basket, dispensary_id) => {
@@ -131,8 +130,8 @@ const Provider = ({ children }) => {
           basketItems,
           setBasketItems,
           basket,
-          baskets,
-          setBaskets,
+          // baskets,
+          // setBaskets,
           dispensaryID,
           setDispensaryID,
           API,

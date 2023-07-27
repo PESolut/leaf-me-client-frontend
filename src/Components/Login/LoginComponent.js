@@ -30,16 +30,16 @@ const LoginComponent = () => {
 
         // Save auth token in a cookie
         setCookie('authToken', response.data.token, { path: '/' });
-        // Save user ID and name in a cookie
         setCookie('name', response.data.name,{ path: '/' } )
         setCookie('userID', response.data.user_id,{ path: '/' } )
-
+        
+        axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;
 
         // Set isSignedIn flag to true
         setIsSignedIn(true);
 
         // Redirect to desired page
-        navigate('/dispensary'); // Replace with the desired URL
+        navigate('/dispensary');
       })
       .catch((error) => {
         console.error('Error:', error);
