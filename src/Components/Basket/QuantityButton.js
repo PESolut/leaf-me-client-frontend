@@ -24,6 +24,7 @@ const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeIt
                     console.error(error)
                 })
                 removeItemFromBasket(basketItemObject.id);
+                basketChange ? setBasketChange(false) : setBasketChange(true)
         } catch (error) {
             console.log(error,'error in quantity button when trying to delete')
         }
@@ -54,7 +55,7 @@ const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeIt
                 console.log(basketItemObject.quantity)
                 updateQuantityInBasketItem(basketItemObject.id, basketItemObject.quantity - 1);
                 setQuantity(prevQuantity => prevQuantity - 1)
-                setBasketChange(true)
+                basketChange ? setBasketChange(false) : setBasketChange(true)
 
         } catch (error) {
             console.log(error,'error in quantity button when trying to increase quantity')
@@ -83,7 +84,7 @@ const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeIt
                 console.log(basketItemObject.quantity)
                 updateQuantityInBasketItem(basketItemObject.id, basketItemObject.quantity + 1);
                 setQuantity(prevQuantity => prevQuantity + 1)
-                setBasketChange(true)
+                basketChange ? setBasketChange(false) : setBasketChange(true)
                 console.log('basket',basketChange)
 
 

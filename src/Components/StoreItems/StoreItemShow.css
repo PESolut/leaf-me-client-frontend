@@ -74,8 +74,9 @@
   }
   
   .cart {
+    padding-left: 10px;
     margin-top: 120px;
-    width: 100%;
+    width: 95%;
     height: 12.8vh;
     padding: 9px 20px;
     font-size: 18px;
