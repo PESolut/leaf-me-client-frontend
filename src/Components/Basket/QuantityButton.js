@@ -3,7 +3,7 @@ import { useContextProvider } from '../../Providers/Provider.js';
 import './QuantityButton.css';
 
 const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeItemFromBasket }) => {
-    const { axios, API , storeItems, userID } = useContextProvider();
+    const { axios, API , storeItems, userID, basketChange, setBasketChange } = useContextProvider();
     const [quantity, setQuantity] = useState(basketItemObject.quantity);
 
     useEffect(() => {
@@ -54,6 +54,7 @@ const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeIt
                 console.log(basketItemObject.quantity)
                 updateQuantityInBasketItem(basketItemObject.id, basketItemObject.quantity - 1);
                 setQuantity(prevQuantity => prevQuantity - 1)
+                setBasketChange(true)
 
         } catch (error) {
             console.log(error,'error in quantity button when trying to increase quantity')
@@ -82,6 +83,9 @@ const QuantityButton = ({ basketItemObject, updateQuantityInBasketItem, removeIt
                 console.log(basketItemObject.quantity)
                 updateQuantityInBasketItem(basketItemObject.id, basketItemObject.quantity + 1);
                 setQuantity(prevQuantity => prevQuantity + 1)
+                setBasketChange(true)
+                console.log('basket',basketChange)
+
 
         } catch (error) {
             console.log(error,'error in quantity button when trying to increase quantity')

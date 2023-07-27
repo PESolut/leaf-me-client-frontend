@@ -60,7 +60,7 @@ const Header = ({userID, basket}) => {
                 items: currentBasket.items
             })
         }
-    },[userID, basket, currentBasket.items])
+    },[userID, basket, currentBasket.items, basketChange])
 
     // takes in basketItems, and storeItems to calculate total basketItems Price
     const calculateTotalBasketItemsPrice =  (basketItems) => {
