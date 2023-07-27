@@ -1,9 +1,11 @@
 /* Grid container for the "basket-total-details" section */
 .basket-total-container {
+  padding-bottom: 16px;
     padding-top: 20px;
+    padding-left: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two rows with equal height */
-    grid-gap: 100px; /* Add some space between the rows */
+    grid-gap: 50px; /* Add some space between the rows */
   }
   
   /* Style for each span inside the "basket-total-details" section */
@@ -21,6 +23,40 @@
     grid-auto-flow: dense;
 
     grid-gap: 20px; /* Add some space between the items */
-    height: 77.0vh;
+    height: 57.0vh;
     overflow: auto;
   }
+  .basket-checkout-container{
+    width: 100%;
+    /* box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75); */
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 0 20px 0 rgba(0, 0, 0, 0.19); */
+    padding-top: 15px;
+    display: grid;
+    height: 15.8vh;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+  }
+  .basket-checkout-container button{
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    /* font-weight: bold; */
+    cursor: pointer;
+  }
+  .basket-checkout-button {
+    color: white;
+    background-color: rgb(5, 3, 3);
+  }
+  .add-items-button {
+    background-color: rgb(236, 236, 236);
+  }
+
+  .br {
+    padding-top: 16px;
+    margin: 0px 10px;
+    border-top: 1px solid rgba(190, 190, 190, 0.917);
+    /* display: block; */
+  }
+  

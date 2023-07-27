@@ -133,7 +133,7 @@ const BasketIndex = () => {
             <span>{`${currentBasket.itemCount} items`}</span>
             <span>{`Subtotal: $${currentBasket.total}`}</span>
         </section>
-        <br/>
+        <div className='br'/>
         <div className="basket-index-container">
              {
                     currentBasket.items ? currentBasket.items.map(object =>
@@ -146,6 +146,10 @@ const BasketIndex = () => {
                         ) : <></>
                     
             }
+        </div>
+        <div className="basket-checkout-container">
+            <button className="basket-checkout-button">Checkout</button>
+            <button className='add-items-button'>Add items</button>
         </div>
         
         </>
