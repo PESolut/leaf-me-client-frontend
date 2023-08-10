@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
+
 const Header = ({userID, basket}) => {
-    const { axios, API, storeItems, setStoreItems, basketChange, setBasketChange } = useContextProvider();
+    const { axios, API, storeItems, setStoreItems, basketChange, setBasketChange, isSignedIn } = useContextProvider();
     const [currentBasket, setCurrentBasket] = useState ({
         total: null,
         itemCount: null,
@@ -15,7 +16,6 @@ const Header = ({userID, basket}) => {
     })
     const navigate = useNavigate();
     const location = useLocation();
-
 
     // on page load, fetch store items, for use on calculating total basket price and single basket item price on basketItem component
     useEffect(() => {
@@ -31,6 +31,7 @@ const Header = ({userID, basket}) => {
 
     // anytime our user changes or our basket changes, lets update our basketitems
     useEffect(()=> {
+        console.log(basket)
         if(basket){
             setBasketChange(false)
             axios
@@ -93,24 +94,30 @@ const Header = ({userID, basket}) => {
         navigate(`/basket`)
     }
 
+    console.log(isSignedIn)
+
     // Determine whether to render the cart component
     // going to render out ... button in replacement of the cart icon when on the cart page
 
     
     const isCartRoute = location.pathname === "/basket";
 
+    
+
 
 
     return (
         <div className="header">
             <section className="left-header">
-                <h2>Leaf Me</h2>
                 {/* <h4>currently signed in as: {userID}</h4> */}
+            </section>
+            <section className="center-header">
+            <h2>Leaf Me</h2>
             </section>
             <section className="right-header">
                 {/* <button>Basket Button</button> */}
                 { // going to render out ... button in replacement of the cart icon when on the cart page
-                    isCartRoute ? null : 
+                    isCartRoute || !isSignedIn ? null : 
                     <>
                      <img onClick ={()=> navigateToCart(userID)} className="cart-icon"src={cartIcon}></img>
                      <span className="cart-text">({currentBasket.itemCount}) ${currentBasket.total}</span>

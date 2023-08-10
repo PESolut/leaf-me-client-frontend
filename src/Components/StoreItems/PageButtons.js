@@ -11,23 +11,22 @@ const PageButtons = () => {
 
   console.log(page);
 
-  const isPageQueryADigit = (pageQuery) => {
-    const pageAsInteger = parseInt(pageQuery);
-    const digitRegex = /^\d$/;
-    return digitRegex.test(pageAsInteger);
-  };
+  // const isPageQueryADigit = (pageQuery) => {
+  //   const pageAsInteger = parseInt(pageQuery);
+  //   const digitRegex = /^\d$/;
+  //   return digitRegex.test(pageAsInteger);
+  // };
 
   useEffect(() => {
     const page = queryParams.get('page');
-    if (!isPageQueryADigit(page)) {
-      setPageNumber(1);
-    } else {
+    // if (!isPageQueryADigit(page)) {
+    //   setPageNumber(1);
+    // } else {
       setPageNumber(parseInt(page));
-    }
+    // }
   }, [queryParams]);
 
   const navigateToPage = (pageNumber) => {
-
     navigate(`/products?page=${pageNumber}`);
   };
 

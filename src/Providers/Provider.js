@@ -34,15 +34,15 @@ const Provider = ({ children }) => {
   useEffect(() => {
     if (cookies.authToken) {
       setAuthToken(cookies.authToken);
-      setIsSignedIn(true);
+      // setIsSignedIn(true);
     }
     if (cookies.userID) {
       setUserID(cookies.userID);
-      setIsSignedIn(true);
+      // setIsSignedIn(true);
     }
     if (cookies.name) {
       setUserName(cookies.name)
-      setIsSignedIn(true);
+      // setIsSignedIn(true);
     }
   }, [cookies]);
 
@@ -55,7 +55,8 @@ const Provider = ({ children }) => {
   // fetch all the baskets and store inside of a state
   useEffect(() => {
     const cookieUserID = cookies.userID
-    axios
+    if(cookieUserID){
+      axios
       .get(`${API}/users/${cookieUserID}/basket`)
       .then(({ data}) => {
         setBasket(data)
@@ -63,6 +64,7 @@ const Provider = ({ children }) => {
       .catch((error) => {
         console.error('ERROR', error)
       })
+    }
   },[userID])
 
 

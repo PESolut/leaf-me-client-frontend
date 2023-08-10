@@ -2,7 +2,8 @@
     /* background-color: red; */
     max-height: 8vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;   
+    grid-template-columns: 1fr 1fr 1fr;   
+    gap: 50px;;
 }
 
 .left-header{
@@ -12,6 +13,8 @@
 
 .right-header{
     display: grid;
+    margin-left: 0px;
+    align-items: center;
     /* grid-template-columns: 1fr 1fr; */
     grid-template-rows: 1fr 1fr;
     row-gap: 0px;
@@ -24,12 +27,13 @@
     object-fit: cover;
     margin-top: 13px;
     margin-bottom: 0px;
-    margin-left: 130px;
+    margin-left: 20px;
 }
 
 .cart-text{
-    margin-top: 2px;
+    margin-bottom: 20px;
     font-weight:bold;
     font-size: 13px;
-    margin-left: 100px;
+    /* margin-left: 100px; */
 }
+

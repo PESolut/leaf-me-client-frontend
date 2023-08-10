@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useContextProvider } from '../../Providers/Provider.js';
 import { useNavigate } from 'react-router-dom';
+import "./LoginComponent.css"
 
 const LoginComponent = () => {
   const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
@@ -54,7 +55,7 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="login">
+    <div className="loginCard">
       <h1>Sign-In</h1>
       <p>Please enter your login details below to login.</p>
       <hr />
@@ -79,10 +80,7 @@ const LoginComponent = () => {
         </button>
       </form>
       <br />
-      <div className="registeracc">
-        <p>
-          click <a href="/register">here</a> to make a new account!
-        </p>
+      <div className="loginCard-button-area"> Sign up
       </div>
     </div>
   );

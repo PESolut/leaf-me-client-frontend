@@ -45,6 +45,7 @@ const BasketIndex = () => {
 
     // on currentBasketItems change, append total to basket object
     // on currentBasketItems change, fetch basket items
+    // on currentBasketItems change, fetch basket items names
     useEffect(()=> {
         if(currentBasket.items.length > 0){
             const total = (calculateTotalBasketItemsPrice(currentBasket.items))
