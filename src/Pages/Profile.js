@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useContextProvider } from '../Providers/Provider';
 import LogoutButton from '../Components/Login/LogoutButton';
+import ProfileIndex from '../Components/Profile/ProfileIndex';
 
 const Profile = () => {
   const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
-  const [profile, setUserProfile] = useState({});
+  const [userProfile, setUserProfile] = useState({});
 
   useEffect(() => {
     const fetchUserProfile = async () => {
+      // console.log(authToken)
       if (authToken) {
         try {
           const response = await axios.get(`${API}/users/${userID}`, {
@@ -25,11 +27,12 @@ const Profile = () => {
     fetchUserProfile();
   }, [userID, authToken, API, axios]);
 
-  console.log(profile);
+  console.log(userProfile);
 
   return (
     <div>
       {/* Render the profile data */}
+      <ProfileIndex userProfile={userProfile}/>
       <LogoutButton/>
     </div>
   );

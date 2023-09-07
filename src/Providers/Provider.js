@@ -46,6 +46,8 @@ const Provider = ({ children }) => {
     }
   }, [cookies]);
 
+  
+
 
   // useEffect(() => {
   //   axios.defaults.headers.common["authorization"] = `Bearer ${authToken}`;

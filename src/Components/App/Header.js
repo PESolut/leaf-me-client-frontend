@@ -4,11 +4,14 @@ import cartIcon from "../../Assets/Icons/shopping-cart.png"
 import { useContextProvider } from '../../Providers/Provider.js';
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useCookies } from 'react-cookie';
+
 
 
 
 const Header = ({userID, basket}) => {
-    const { axios, API, storeItems, setStoreItems, basketChange, setBasketChange, isSignedIn } = useContextProvider();
+    const [cookies, setCookie] = useCookies(['authToken', 'userID', 'name']);
+    const { axios, API, storeItems, setStoreItems, basketChange, setBasketChange, isSignedIn, setIsSignedIn } = useContextProvider();
     const [currentBasket, setCurrentBasket] = useState ({
         total: null,
         itemCount: null,
@@ -16,6 +19,15 @@ const Header = ({userID, basket}) => {
     })
     const navigate = useNavigate();
     const location = useLocation();
+
+    // on page load, check if user is signed in; if so, set state to true
+    useEffect(() => {
+        if(cookies.authToken || cookies.userID || cookies.name){
+            setIsSignedIn(true)
+        }
+
+
+    },[])
 
     // on page load, fetch store items, for use on calculating total basket price and single basket item price on basketItem component
     useEffect(() => {
@@ -87,7 +99,7 @@ const Header = ({userID, basket}) => {
         }
       };
 
-      console.log(currentBasket)
+      console.log(currentBasket.total === null)
 
 
     const navigateToCart = (userID) => {
@@ -117,7 +129,7 @@ const Header = ({userID, basket}) => {
             <section className="right-header">
                 {/* <button>Basket Button</button> */}
                 { // going to render out ... button in replacement of the cart icon when on the cart page
-                    isCartRoute || !isSignedIn ? null : 
+                    ( isCartRoute || !isSignedIn ) || currentBasket.total === null ? null : 
                     <>
                      <img onClick ={()=> navigateToCart(userID)} className="cart-icon"src={cartIcon}></img>
                      <span className="cart-text">({currentBasket.itemCount}) ${currentBasket.total}</span>

@@ -1,0 +1,71 @@
+.user--profile--photobadge--container{
+    height: fit-content;
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+}
+
+.user--profile--photobadge--name--container {
+    padding-left: 10px;
+    padding-top: 90px;
+}
+
+.user--profile--photobadge--name--container span {
+    font-weight:bold;
+    font-size: 20px;
+
+}
+
+.user--profile--photobadge--svg{
+
+    transform: scale(1)
+}
+
+.user--profile--orders--badge--pending--container{
+    display: grid;
+    grid-template-rows: 1fr 1.3fr;
+    border-radius: 7px;
+    margin-left: 10px;
+    width: 80%;
+    height: 80px;
+    background-color: #cecece;
+}
+
+.user--profile--orders--badge--pending--title{
+    padding-top: 5px;
+    text-align: center;
+}
+
+
+.user--profile--orders--badge--pending--value{
+    padding-top: 5px;
+    text-align: center;
+}
+
+.user--profile--orders--badge--nonpending--container{
+    display: grid;
+    grid-template-rows: 1fr 1.3fr;
+    border-radius: 7px;
+    margin-left: 10px;
+    width: 80%;
+    height: 80px;
+    background-color: #cecece;
+}
+
+.user--profile--orders--badge--nonpending--title{
+    padding-top: 5px;
+    text-align: center;
+}
+
+
+.user--profile--orders--badge--nonpending--value{
+    padding-top: 5px;
+    text-align: center;
+}
+
+
+.user--profile--orders--badges--container{
+    padding-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+}
