@@ -46,7 +46,7 @@
     display: grid;
     grid-template-rows: 1fr 1.3fr;
     border-radius: 7px;
-    margin-left: 10px;
+    margin-left: 20px;
     width: 80%;
     height: 80px;
     background-color: #cecece;
@@ -68,4 +68,44 @@
     padding-top: 20px;
     grid-template-columns: 1fr 1fr;
     display: grid;
+}
+
+.user--profile--dashboard--wallet--container span{
+    padding-left: 10px;
+    padding-top: 17.5px
+}
+
+.user--profile--dashboard--wallet--container{
+    padding-left: 5px;
+    padding-top: 15px;
+    padding-bottom: 7.5px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.user--profile--dashboard--favorite--container span{
+    padding-left: 10px;
+    padding-top: 17.5px
+}
+
+
+.user--profile--dashboard--favorite--container{
+    padding-left: 5px;
+    padding-bottom: 7.5px;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.user--profile--dashboard--container--title {
+    padding-top: 100px;
+    color: rgb(110, 110, 110)
+}
+
+.user--profile--dashboard--container{
+    padding-left: 15px;
+    padding-top: 50px;
+}
+
+.filler {
+    height: 190px;
 }

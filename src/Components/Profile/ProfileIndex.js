@@ -31,16 +31,20 @@ const ProfileIndex = ({userProfile}) => {
             </div>
 
             <div className='user--profile--dashboard--container'>
+                <span className='user--profile--dashboard--container--title '>Dashboard</span>
                 <div className='user--profile--dashboard--wallet--container'>
                     {/* <img> Wallet Icon Image Here</img> */}
+                    <UnkownUserPhotoBadge className='user--profile--dashboard--wallet--icon'/> {/* replace with dashboard wallet icon*/}
                     <span>Wallet</span>
 
                 </div>
                 <div className='user--profile--dashboard--favorite--container'>
                     {/* <img> Favorite Stores Icon Image Here</img> */}
+                    <UnkownUserPhotoBadge className='user--profile--dashboad--favorite--icon'/>
                     <span>Favorite Stores</span>
 
                 </div>
+                <div className='filler'></div>
             </div>
             
         </div>
