@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useContextProvider } from '../Providers/Provider';
 import LogoutButton from '../Components/Login/LogoutButton';
 import ProfileIndex from '../Components/Profile/ProfileIndex';
+import ProfileEditPage from '../Components/Profile/ProfileEditPage';
 
 const Profile = () => {
   const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
@@ -32,7 +33,8 @@ const Profile = () => {
   return (
     <div>
       {/* Render the profile data */}
-      <ProfileIndex userProfile={userProfile}/>
+      {/* <ProfileIndex userProfile={userProfile}/> */}
+      <ProfileEditPage userProfile={userProfile}/> 
       <LogoutButton/>
     </div>
   );

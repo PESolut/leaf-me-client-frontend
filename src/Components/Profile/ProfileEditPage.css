@@ -1,0 +1,64 @@
+.user--profile--edit--photobadge--container{
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+    padding-left: 22%;
+
+    
+}
+
+.user--profile--edit--photobadge--name--container span{
+    font-size: 18px;
+    padding-left: 60px;
+    font-weight: bold;
+}
+
+
+
+.user--profile--edit--photobadge--photo {
+    height: 200px;
+    transform: scale(1);
+}
+
+.user--profile--edit--form{
+    padding-left: 10px
+}
+.user--profile--edit--form input{
+    padding-top: 5px;
+    border:0;
+    outline: 0;
+}
+
+.user--profile--edit--form label{
+    color: #6b6b6b
+}
+
+.user--profile--edit--form input:focus{
+    outline: none!important
+}
+
+.user--profile--edit--form--email{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.user--profile--edit--form--line{
+    background-color: #929292;
+    height: 1px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.user--profile--edit--form--name{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.user--profile--edit--form--address{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.filler {
+    height: 190px;
+}

@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import {ReactComponent as UnkownUserPhotoBadge} from "../../Assets/Icons/unknown-user.svg"
+import "./ProfileEditPage.css"
 
 const ProfileEditPage = ({userProfile}) => {
+
+    console.log(userProfile)
     const [userDetails, setUserDetails] = useState({
         email: "",
         name: "",
@@ -20,25 +24,29 @@ const ProfileEditPage = ({userProfile}) => {
         <div className='user--profile--edit'>
            <div className='user--profile--edit--photobadge--container'>
                 <div className='user--profile--edit--photobadge--photo--container'>
-                    <img></img>
+                    <UnkownUserPhotoBadge className='user--profile--edit--photobadge--photo'/>
                 </div>
                 <div className='user--profile--edit--photobadge--name--container'>
                     <span>{userProfile.name}</span>
                 </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="text" id="email" value={userDetails.email} onChange={handleUserDetailsChange} />
+            <form className="user--profile--edit--form" onSubmit={handleSubmit}>
+                <div className='user--profile--edit--form--email'>
+                    <label htmlFor="email">Email Address</label>
+                    <input type="text" id="email" value={userProfile.email} onChange={handleUserDetailsChange} />
+                    <div className='user--profile--edit--form--line'></div>
                 </div>
-                <div>
+                <div className='user--profile--edit--form--name'>
                     <label htmlFor="name">Name</label>
-                    <input type="name" id="password" value={userDetails.password} onChange={handleUserDetailsChange} />
+                    <input type="name" id="name" value={userProfile.name} onChange={handleUserDetailsChange} />
+                    <div className='user--profile--edit--form--line'></div>
                 </div>
-                <div>
+                <div className='user--profile--edit--form--address'>
                     <label htmlFor="address">Address</label>
-                    <input type="address" id="address" value={userDetails.password} onChange={handleUserDetailsChange} />
+                    <input type="address" id="address" value={userProfile.address} onChange={handleUserDetailsChange} />
+                    <div className='user--profile--edit--form--line'></div>
                 </div>
+                <div className='filler'/>
                 
             </form>
         </div>
