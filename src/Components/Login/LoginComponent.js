@@ -55,33 +55,41 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className="loginCard">
-      <h1>Sign-In</h1>
-      <p>Please enter your login details below to login.</p>
-      <hr />
+    <div className="login">
+      <h2>Welcome back!</h2>
+      {/* <p>Please enter your login details below to login.</p> */}
+      {/* <hr /> */}
       {error && (
-        <div className="error-login">
+        <div className="login--error">
           <p>{error}</p>
           <p>{errorMessage}</p>
-          <hr />
+          {/* <hr /> */}
         </div>
       )}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
+      <form className="login--form" onSubmit={handleSubmit}>
+        <div className='login--form--email'>
+          <label htmlFor="email">Email Address</label>
           <input type="text" id="email" value={loginDetails.email} onChange={handleLoginDetailsChange} />
+          <div className='login--form--line' />
         </div>
-        <div>
+        <div className={error && "login--form--password--error" || !error && "login--form--password"}>
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" value={loginDetails.password} onChange={handleLoginDetailsChange} />
+          <div className='login--form--line'/>
         </div>
-        <button className="loginbutton" type="submit">
+        <div className='login--form--buttons--container'>
+        <button className="login--form--buttons--login--button" type="submit">
           Submit
         </button>
+   
+
+        </div>
+        
       </form>
+      <button className='login--form--buttons--register--button'>
+          Register
+        </button>
       <br />
-      <div className="loginCard-button-area"> Sign up
-      </div>
     </div>
   );
 };

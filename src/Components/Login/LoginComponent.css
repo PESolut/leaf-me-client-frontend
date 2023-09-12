@@ -1,13 +1,75 @@
-.loginCard{
-    
+h2 {
+    padding-bottom: 20px
+}
+
+h2, p {
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.login--error{
+    padding-bottom: 40px;
+}
+
+.login--form--email{
+    display: grid;
+}
+
+.login--form--password{
+    display: grid;
+    padding-bottom: 320px;
 
 }
-.loginCard-register{
-    width: 42vh;
-    height: 15.8vh;
-    margin-left: 10px;
-    margin-right: 10px;
-    /* background-color: rgb(5, 3, 3); */
-    color: white
 
+.login--form--password--error{
+    display: grid;
+    padding-bottom: 220px;
+}
+
+.login--form{
+    padding-left: 10px;
+}
+.login--form input{
+    font-size: 1.2em;
+    border: 0;
+    outline: 0;
+    padding-top: 5px
+}
+
+.login--form label {
+    font-size: 1.2em;
+    color: #6b6b6b;
+}
+
+.login--form--line{
+    background-color: #929292;
+    height: 1px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.login--form--buttons--container{
+    display: grid;
+}
+
+.login--form--buttons--login--button {
+    height: 70px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    background-color: black;
+}
+
+.login--form--buttons--register--button {
+    margin-top: 10px;
+    height: 70px;
+    width: 96.7%;
+    border: 0;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-right: 0px;
 }

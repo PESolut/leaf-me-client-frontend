@@ -3,7 +3,14 @@ import {ReactComponent as UnkownUserPhotoBadge} from '../../Assets/Icons/unknown
 import "./ProfileIndex.css"
 
 
-const ProfileIndex = ({userProfile}) => {
+const ProfileIndex = ({userProfile, setUserProfileState}) => {
+    
+    const handleOnChange = () => {
+
+        setUserProfileState(1)
+
+    }
+
 
     return (
         <div className='user--profile'>
@@ -13,7 +20,7 @@ const ProfileIndex = ({userProfile}) => {
                 </div>
                 <div className='user--profile--photobadge--name--container'>
                     <span>{userProfile.name}</span>
-                    <img>{/* pencil button here for edit profile page link */ }</img>
+                    {/* <button> onChange={handleOnChange} ✏️</button> */}
                 </div>
             </div>
 

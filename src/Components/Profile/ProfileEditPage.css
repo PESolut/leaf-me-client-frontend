@@ -24,12 +24,14 @@
     padding-left: 10px
 }
 .user--profile--edit--form input{
+    font-size: 16px;
     padding-top: 5px;
     border:0;
     outline: 0;
 }
 
 .user--profile--edit--form label{
+    font-size: 1.2em;
     color: #6b6b6b
 }
 

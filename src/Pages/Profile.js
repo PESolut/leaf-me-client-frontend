@@ -7,6 +7,7 @@ import ProfileEditPage from '../Components/Profile/ProfileEditPage';
 const Profile = () => {
   const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
   const [userProfile, setUserProfile] = useState({});
+  const [userProfileState, setUserProfileState] = useState(0)
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -33,8 +34,8 @@ const Profile = () => {
   return (
     <div>
       {/* Render the profile data */}
-      {/* <ProfileIndex userProfile={userProfile}/> */}
-      <ProfileEditPage userProfile={userProfile}/> 
+      <ProfileIndex userProfileState={userProfileState} userProfile={userProfile}/>
+      {/* <ProfileEditPage userProfile={userProfile}/>  */}
       <LogoutButton/>
     </div>
   );
