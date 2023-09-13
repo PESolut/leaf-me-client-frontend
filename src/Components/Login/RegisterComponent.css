@@ -1,0 +1,54 @@
+.register h2{
+    text-align: center;
+}
+
+.register--form input, label, .register--form--line{
+    margin-left: 10px;
+}
+
+.register--form input {
+    font-size: 1.2em;
+    padding-top: 5px;
+    border: 0;
+    outline: 0;
+}
+
+.register--form label {
+    display: grid;
+    font-size: 1.2em;
+    color: #6b6b6b
+}
+
+.register--form--line{
+    background-color: #929292;
+    height: 1px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.register--form button {
+    height: 70px;
+    width: 96.7%;
+    margin-left: 8px;
+    border: 0;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.register--form--login--button{
+    margin-top: 10px;
+    height: 70px;
+    border: 0;
+    border-radius: 10px;
+    width: 96.7%;
+    margin-left: 8px;
+}
+
+.filler--register {
+    padding-top: 15px;
+}
+
+.register--form--address{
+    margin-bottom: 200px
+}

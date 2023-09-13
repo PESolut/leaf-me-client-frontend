@@ -54,6 +54,12 @@ const LoginComponent = () => {
     });
   };
 
+  const handleRegisterButton = (event) => {
+    console.log(event)
+    navigate("/register")
+    
+  }
+
   return (
     <div className="login">
       <h2>Welcome back!</h2>
@@ -73,12 +79,12 @@ const LoginComponent = () => {
           <div className='login--form--line' />
         </div>
         <div className={error && "login--form--password--error" || !error && "login--form--password"}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input type="password" id="password" value={loginDetails.password} onChange={handleLoginDetailsChange} />
           <div className='login--form--line'/>
         </div>
         <div className='login--form--buttons--container'>
-        <button className="login--form--buttons--login--button" type="submit">
+        <button onChange={handleLoginDetailsChange} className="login--form--buttons--login--button" type="submit">
           Submit
         </button>
    
@@ -86,9 +92,9 @@ const LoginComponent = () => {
         </div>
         
       </form>
-      <button className='login--form--buttons--register--button'>
+      <button onClick={handleRegisterButton} className='login--form--buttons--register--button'>
           Register
-        </button>
+      </button>
       <br />
     </div>
   );

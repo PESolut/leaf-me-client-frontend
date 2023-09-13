@@ -8,6 +8,7 @@ import Login from '../../Pages/Login';
 import Profile from '../../Pages/Profile';
 import Products from '../../Pages/Products';
 import Basket from '../../Pages/Basket'
+import Register from '../../Pages/Register'
 
 const RouteComponent = () => {
   return (
@@ -22,6 +23,9 @@ const RouteComponent = () => {
         </Route>
         <Route path='login'>
           <Route index element={<Login/>}/>
+        </Route>
+        <Route path='register'>
+          <Route index element={<Register/>}/>
         </Route>
         <Route path='profile'>
           <Route index element={<Profile/>} />
