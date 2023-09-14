@@ -30,6 +30,7 @@ const Provider = ({ children }) => {
   const [basketItems, setBasketItems] = useState({})
   const [basketChange, setBasketChange] = useState(false)
   const [storeItems, setStoreItems] = useState({})
+  const [userProfileState, setUserProfileState] = useState(0)
 
   useEffect(() => {
     if (cookies.authToken) {
@@ -123,6 +124,8 @@ const Provider = ({ children }) => {
     <div>
       <ContextD.Provider
         value={{
+          userProfileState,
+          setUserProfileState,
           totalBasketItems,
           setTotalBasketItems,
           subTotalCartPrice,

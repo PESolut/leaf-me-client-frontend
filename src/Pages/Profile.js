@@ -5,9 +5,9 @@ import ProfileIndex from '../Components/Profile/ProfileIndex';
 import ProfileEditPage from '../Components/Profile/ProfileEditPage';
 
 const Profile = () => {
-  const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
+  const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn, userProfileState } = useContextProvider();
   const [userProfile, setUserProfile] = useState({});
-  const [userProfileState, setUserProfileState] = useState(0)
+  // const [userProfileState, setUserProfileState] = useState(0)
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -34,8 +34,11 @@ const Profile = () => {
   return (
     <div>
       {/* Render the profile data */}
-      <ProfileIndex userProfileState={userProfileState} userProfile={userProfile}/>
-      {/* <ProfileEditPage userProfile={userProfile}/>  */}
+
+      {
+        userProfileState == 0 && <ProfileIndex userProfile={userProfile}/> ||
+        userProfileState == 1 && <ProfileEditPage userProfile={userProfile}/> 
+      }
       <LogoutButton/>
     </div>
   );

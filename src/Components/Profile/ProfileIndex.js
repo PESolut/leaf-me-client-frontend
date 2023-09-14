@@ -1,14 +1,22 @@
 import React from 'react';
+import { useContextProvider } from '../../Providers/Provider';
 import {ReactComponent as UnkownUserPhotoBadge} from '../../Assets/Icons/unknown-user.svg';
 import "./ProfileIndex.css"
 
 
-const ProfileIndex = ({userProfile, setUserProfileState}) => {
+const ProfileIndex = ({userProfile}) => {
+    const { API, axios, authToken, userProfileState, setUserProfileState } = useContextProvider();
+
     
-    const handleOnChange = () => {
+    const handleEditButton = (event) => {
+        if(userProfileState == 0){
+            setUserProfileState(1)
 
-        setUserProfileState(1)
+        } else if (userProfileState == 1){
+            setUserProfileState(0)
+        }
 
+        console.log('userProfileState',userProfileState)
     }
 
 
@@ -20,7 +28,7 @@ const ProfileIndex = ({userProfile, setUserProfileState}) => {
                 </div>
                 <div className='user--profile--photobadge--name--container'>
                     <span>{userProfile.name}</span>
-                    {/* <button> onChange={handleOnChange} ✏️</button> */}
+                    <button onClick={handleEditButton}>✏️</button>
                 </div>
             </div>
 

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useContextProvider } from '../../Providers/Provider';
 import {ReactComponent as UnkownUserPhotoBadge} from "../../Assets/Icons/unknown-user.svg"
 import "./ProfileEditPage.css"
 
 const ProfileEditPage = ({userProfile}) => {
+    const { API, axios, authToken, userProfileState, setUserProfileState } = useContextProvider();
+
 
     console.log(userProfile)
     const [userDetails, setUserDetails] = useState({
@@ -20,6 +23,17 @@ const ProfileEditPage = ({userProfile}) => {
         event.preventDefault();
     }
 
+    const handleEditButton = (event) => {
+        if(userProfileState == 0){
+            setUserProfileState(1)
+
+        } else if (userProfileState == 1){
+            setUserProfileState(0)
+        }
+
+        console.log('userProfileState',userProfileState)
+    }
+
     return (
         <div className='user--profile--edit'>
            <div className='user--profile--edit--photobadge--container'>
@@ -28,6 +42,8 @@ const ProfileEditPage = ({userProfile}) => {
                 </div>
                 <div className='user--profile--edit--photobadge--name--container'>
                     <span>{userProfile.name}</span>
+                    <button onClick={handleEditButton}>✏️</button>
+
                 </div>
             </div>
             <form className="user--profile--edit--form" onSubmit={handleSubmit}>
