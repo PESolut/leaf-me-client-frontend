@@ -1,10 +1,16 @@
 import React,{ useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContextProvider } from '../../Providers/Provider.js';
 import './RegisterComponent.css'
 
 
 const RegisterComponent = () => {
+    const { API, axios, authToken, setAuthToken, userID, setUserID, isSignedIn, setIsSignedIn } = useContextProvider();
     const navigate = useNavigate();
+    const [response, setResponse] = useState({
+        response: '',
+        message: ''
+    })
     const [registerDetails, setRegisterDetails] = useState({
         email: '',
         password: '',
@@ -19,7 +25,29 @@ const RegisterComponent = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        //post request here
+        // post registerDetails to database
+        axios.post(`${API}/users`, registerDetails)
+        .then((response) => {
+            setResponse({
+                // response: 'An error occured during registration',
+                message: response.response
+            })
+            console.log(response)
+
+            // TO DO / 1 \
+            // figure out how to handle on good registration
+            
+
+        })
+        .catch((error) => {
+            console.error(error)
+            setResponse({
+                response: 'An error occured during registration',
+                message: error.response.data.error
+            })
+        })
+
+
     }
 
     const handleLoginButton = (event) => {
@@ -30,6 +58,13 @@ const RegisterComponent = () => {
 
         <div className='register'>
             <h2>Welcome!</h2>
+            {response && (
+                <div className="login--error">
+                <p>{response.response}</p>
+                <p>{response.message}</p>
+          {/* <hr /> */}
+        </div>
+      )}
             <form onSubmit={handleSubmit} className='register--form'>
                 <div className='register--form--email'>
                     <label htmlFor="email">Email Address</label>
